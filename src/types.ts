@@ -54,6 +54,8 @@ export interface ExperienceItem {
   note?: string
   /** Company mark in public/images/logos/, e.g. "cabswale.png". */
   logo?: string
+  /** Company site; the logo links here when set. */
+  url?: string
   /** Short blurb; `highlight` gets the amber underline. */
   summary?: { before: string; highlight: string; after: string }
 }
@@ -76,6 +78,8 @@ export interface StackGroup {
 
 export interface Award {
   title: string
+  /** The work the award was given for. */
+  project?: string
   detail?: string
 }
 

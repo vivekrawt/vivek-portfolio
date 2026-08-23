@@ -22,7 +22,7 @@ function ResumeLink({ onNavigate, className }: { onNavigate?: () => void; classN
   return (
     <a
       href={asset(profile.resumePath)}
-      download="Vivek-Rawat-Data-Analyst.pdf"
+      download="Vivek_Resume.pdf"
       onClick={() => {
         track('resume_download', { source: 'nav' })
         onNavigate?.()
