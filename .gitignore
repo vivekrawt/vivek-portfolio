@@ -1,1 +1,16 @@
-*.pdf
+node_modules
+dist
+.DS_Store
+*.local
+.env
+.env.*
+!.env.example
+
+# Source résumé kept out of git; the published copy lives at public/resume.pdf
+/vivek-rawat technical.pdf
+
+*.tsbuildinfo
+
+# Source photos for the About deck — ~35MB of raw phone shots, already
+# optimised into public/images/about/. Kept on disk, out of git history.
+legacy/about-originals/

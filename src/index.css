@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   TOKENS — PRD §5.2 (light, default) and §5.3 (dark, Phase 2)
+   Stored as space-separated RGB channels so Tailwind's
+   <alpha-value> syntax works against every token.
+   ============================================================ */
+:root {
+  --canvas: 246 244 240;      /* #F6F4F0 warm off-white */
+  --surface: 255 255 255;     /* #FFFFFF */
+  --edge: 237 231 223;        /* #EDE7DF warm outer frame */
+  --ink: 20 20 20;            /* #141414 */
+  --ink-muted: 108 106 102;   /* darkened from PRD #8C8C8C to clear 4.5:1 on canvas */
+  --hairline: 230 227 222;    /* #E6E3DE */
+  --accent: 47 191 113;       /* #2FBF71 — reserved for live/availability only */
+  --accent-ink: 22 122 70;    /* accessible text/ring companion to --accent */
+  --highlight: 253 226 148;   /* marker highlight behind a phrase */
+
+  /* Amber is the decorative accent: swashes, icon tiles, kickers, motifs. */
+  --gold: 244 183 57;         /* #F4B739 */
+  --gold-ink: 158 106 8;      /* #9E6A08 — amber that clears 4.5:1 as text */
+  --gold-soft: 253 243 219;   /* #FDF3DB — icon-tile and chip fills */
+  --gold-line: 245 190 46;    /* swash / underline stroke */
+
+  /* Data-viz motif hues — validated CVD-safe on #FFFFFF (see ProjectThumb) */
+  --viz-blue: #2a78d6;
+  --viz-orange: #eb6834;
+  --viz-violet: #4a3aa7;
+  --viz-red: #e34948;
+
+  --ease-editorial: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --nav-h: 61px;
+}
+
+/* Phase 2 (FR-13): flip [data-theme="dark"] on <html> and the whole site follows. */
+:root[data-theme='dark'] {
+  --canvas: 18 17 16;
+  --surface: 27 26 24;
+  --edge: 24 23 21;
+  --ink: 244 241 236;
+  --ink-muted: 154 150 142;
+  --hairline: 42 40 37;
+  --accent: 61 220 132;
+  --accent-ink: 61 220 132;
+  --highlight: 92 76 26;
+}
+
+@layer base {
+  * {
+    @apply border-hairline;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-edge font-sans text-ink antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+    text-rendering: optimizeLegibility;
+  }
+
+  /* PRD §12.2 — one visible focus treatment everywhere. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ink ring-offset-2;
+    --tw-ring-offset-color: rgb(var(--canvas));
+  }
+
+  ::selection {
+    background: rgb(var(--highlight));
+    color: rgb(var(--ink));
+  }
+
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  /* Faint dot grid — the mockup's background texture. */
+  .dot-grid {
+    background-image: radial-gradient(rgb(var(--ink) / 0.13) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  /* Soft colour blooms behind the hero. */
+  .bloom {
+    @apply pointer-events-none absolute rounded-full;
+    filter: blur(64px);
+  }
+
+  /* Amber icon tile beside a column heading. */
+  .icon-tile {
+    @apply inline-flex shrink-0 items-center justify-center rounded-[10px];
+    background: rgb(var(--gold-soft));
+    color: rgb(var(--gold-ink));
+  }
+
+  /* The warm --edge gutter framing a --canvas sheet, per PRD §5.5 / reference. */
+  .sheet {
+    @apply mx-auto w-full bg-canvas;
+    max-width: 1600px;
+    min-height: 100dvh;
+  }
+
+  .frame {
+    @apply mx-auto w-full max-w-frame px-6 sm:px-10 lg:px-16;
+  }
+
+  .section {
+    @apply py-16 sm:py-24 lg:py-30;
+  }
+
+  .mono-label {
+    @apply font-mono text-label uppercase text-ink-muted;
+  }
+
+  /* PRD §7.2 — marker highlight behind a single phrase. */
+  .marker {
+    background-image: linear-gradient(
+      to bottom,
+      transparent 6%,
+      rgb(var(--highlight)) 6%,
+      rgb(var(--highlight)) 92%,
+      transparent 92%
+    );
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    padding-inline: 0.12em;
+  }
+
+  .link-underline {
+    @apply relative no-underline;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 320ms var(--ease-editorial);
+  }
+
+  .link-underline:hover,
+  .link-underline:focus-visible {
+    background-size: 100% 1px;
+  }
+}
+
+@layer utilities {
+  /* PRD §5.6 — scroll reveal; the .is-visible class is set by <Reveal>. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 520ms var(--ease-editorial),
+      transform 520ms var(--ease-editorial);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* PRD §5.6 / §12.2 — nothing moves when the user has asked for stillness. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

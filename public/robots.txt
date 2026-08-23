@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vivekrawt.github.io/vivek-portfolio/sitemap.xml
