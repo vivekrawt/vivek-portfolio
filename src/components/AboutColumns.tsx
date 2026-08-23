@@ -3,6 +3,7 @@ import {
   Briefcase,
   CalendarDays,
   Database,
+  ExternalLink,
   GraduationCap,
   MapPin,
   Star,
@@ -10,6 +11,7 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 import { awards, experience, techStack } from '@/data/profile'
+import { track } from '@/lib/analytics'
 import { asset } from '@/lib/asset'
 
 const awardIcons: LucideIcon[] = [Trophy, GraduationCap, Award]
@@ -52,23 +54,47 @@ export function AboutColumns() {
               />
               <p className="text-[0.95rem] font-semibold leading-snug">{job.role}</p>
 
-              {/* The marks spell the company names, so the wordmark replaces
-                  the text visually and the text stays for screen readers. */}
-              <span className="mt-2 flex items-center">
-                {job.logo && (
-                  <img
-                    src={asset(`images/logos/${job.logo}`)}
-                    alt=""
-                    aria-hidden="true"
-                    loading="lazy"
-                    decoding="async"
-                    className="h-5 w-auto max-w-[110px] object-contain"
-                  />
+              {/* Fixed-size chip so logos of different aspect ratios take up
+                  the same footprint. The mark replaces the company name
+                  visually; the name stays for screen readers. */}
+              <div className="mt-2">
+                {job.logo && job.url ? (
+                  <a
+                    href={job.url}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    onClick={() => track('outbound_click', { destination: job.org })}
+                    aria-label={`Visit the ${job.org} website (opens in a new tab)`}
+                    className="group/logo relative inline-flex h-11 w-[130px] items-center justify-center rounded-xl border border-hairline bg-canvas/70 px-3 transition-all duration-200 ease-editorial hover:border-gold hover:bg-gold-soft/60 focus-visible:border-gold"
+                  >
+                    <img
+                      src={asset(`images/logos/${job.logo}`)}
+                      alt=""
+                      aria-hidden="true"
+                      loading="lazy"
+                      decoding="async"
+                      className="max-h-6 w-auto max-w-full object-contain"
+                    />
+
+                    <ExternalLink
+                      aria-hidden="true"
+                      strokeWidth={2}
+                      className="absolute -right-1.5 -top-1.5 size-[18px] rounded-full bg-gold p-[3px] text-ink opacity-0 transition-opacity duration-200 group-hover/logo:opacity-100 group-focus-visible/logo:opacity-100"
+                    />
+
+                    {/* Says where the click goes, on hover and on keyboard focus. */}
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute left-full top-1/2 z-20 ml-2 -translate-y-1/2 whitespace-nowrap rounded-md bg-ink px-2 py-1 font-mono text-[0.65rem] tracking-wide text-surface opacity-0 shadow-lift transition-opacity duration-200 group-hover/logo:opacity-100 group-focus-visible/logo:opacity-100"
+                    >
+                      {job.url.replace(/^https?:\/\/(www\.)?/, '')} ↗
+                    </span>
+                  </a>
+                ) : (
+                  <span className="text-[0.9rem] text-ink-muted">{job.org}</span>
                 )}
-                <span className={job.logo ? 'sr-only' : 'text-[0.9rem] text-ink-muted'}>
-                  {job.org}
-                </span>
-              </span>
+                {job.logo && <span className="sr-only">{job.org}</span>}
+              </div>
 
               <p className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[0.7rem] text-ink-muted">
                 <span className="inline-flex items-center gap-1.5">
@@ -147,6 +173,11 @@ export function AboutColumns() {
                   <span className="block text-[0.92rem] font-medium leading-snug">
                     {award.title}
                   </span>
+                  {award.project && (
+                    <span className="mt-1 block text-[0.84rem] leading-snug text-ink-muted">
+                      {award.project}
+                    </span>
+                  )}
                   {award.detail && (
                     <span className="mt-1 block font-mono text-[0.7rem] text-ink-muted">
                       {award.detail}

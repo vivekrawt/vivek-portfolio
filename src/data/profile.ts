@@ -16,7 +16,7 @@ export const profile = {
   responseTime: 'I usually reply within a day.',
 
   siteUrl: 'https://vivekrawt.github.io/vivek-portfolio/',
-  resumePath: 'resume.pdf',
+  resumePath: 'Vivek_Resume.pdf',
   portraitPath: 'images/portrait.jpg',
 
   /** The three roles in the hero badge. */
@@ -93,6 +93,7 @@ export const experience: ExperienceItem[] = [
     period: 'Apr 2026 — Sep 2026',
     note: 'On-site, Gurgaon',
     logo: 'cabswale.png',
+    url: 'https://cabswale.ai',
     summary: {
       before: 'Building analytics products and automated reports ',
       highlight: 'to drive business decisions',
@@ -105,6 +106,7 @@ export const experience: ExperienceItem[] = [
     period: 'Jun 2025 — Jul 2025',
     note: 'Hybrid',
     logo: 'ullas-trust.png',
+    url: 'https://www.ullastrust.org',
     summary: {
       before: 'Analyzed 5,000+ survey responses and built ',
       highlight: 'dashboards that improved',
@@ -167,8 +169,13 @@ export const techStack: StackGroup[] = [
 export const awards: Award[] = [
   {
     title: 'Hackathon Winner — Park Prabandh 2026',
-    detail: 'Agentic AI smart parking · GDSC · DCE',
+    project: 'Agentic AI smart parking',
+    detail: 'GDSC · DCE',
   },
-  { title: 'FAER Scholar', detail: '2025—26' },
+  {
+    title: 'FAER Scholar',
+    project: 'Deep Fake Detection System',
+    detail: '2025—26',
+  },
   { title: 'Vice Chair, ACM-W Chapter', detail: '2024—25' },
 ]

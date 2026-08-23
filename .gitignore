@@ -6,7 +6,7 @@ dist
 .env.*
 !.env.example
 
-# Source résumé kept out of git; the published copy lives at public/resume.pdf
+# Source résumé kept out of git; the published copy lives at public/Vivek_Resume.pdf
 /vivek-rawat technical.pdf
 
 *.tsbuildinfo

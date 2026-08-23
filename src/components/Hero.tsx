@@ -120,7 +120,7 @@ export function Hero() {
             <p className="mt-5 text-sm">
               <a
                 href={asset(profile.resumePath)}
-                download="Vivek-Rawat-Data-Analyst.pdf"
+                download="Vivek_Resume.pdf"
                 onClick={() => track('resume_download', { source: 'hero' })}
                 className="inline-flex items-center gap-2 text-ink-muted decoration-gold-line decoration-2 underline-offset-[6px] transition-colors hover:text-ink hover:underline"
               >

@@ -42,7 +42,7 @@ links appear in the footer and on `/contact`; an empty string hides them.
 
 ## Routes
 
-`/` · `/about` · `/projects` · `/projects/:slug` · `/contact` · `/resume.pdf` · 404 fallback
+`/` · `/about` · `/projects` · `/projects/:slug` · `/contact` · `/Vivek_Resume.pdf` · 404 fallback
 
 ## Deploying
 
