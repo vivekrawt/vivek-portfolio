@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting… — Vivek Rawat</title>
+    <meta name="robots" content="noindex" />
+    <script>
+      // GitHub Pages has no server-side rewrite, so a deep link lands here.
+      // Stash the requested route in ?p= and hand it back to the SPA, which
+      // restores it in src/main.tsx before React Router boots.
+      (function () {
+        var base = '/vivek-portfolio/'
+        var path = window.location.pathname
+        var route = path.indexOf(base) === 0 ? path.slice(base.length - 1) : path
+        window.location.replace(
+          base + '?p=' + encodeURIComponent(route || '/') + window.location.hash
+        )
+      })()
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to <a href="/vivek-portfolio/">the portfolio</a>…</p>
+  </body>
+</html>
