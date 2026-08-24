@@ -154,6 +154,7 @@ export const techStack: StackGroup[] = [
     tools: [
       { name: 'MySQL', logo: 'mysql' },
       { name: 'BigQuery', logo: 'bigquery' },
+      { name: 'Firestore', logo: 'firestore' },
       { name: 'Google Cloud', logo: 'gcp' },
     ],
   },
@@ -162,6 +163,22 @@ export const techStack: StackGroup[] = [
     title: 'ETL & Automation',
     tools: [{ name: 'Sheets / Drive API', logo: 'sheets' }],
     items: 'ETL Pipelines',
+  },
+  {
+    key: 'ml',
+    title: 'Machine Learning',
+    tools: [{ name: 'scikit-learn', logo: 'sklearn' }],
+    items: 'TF-IDF · Logistic Regression · NLP · OCR · Anomaly Detection',
+  },
+  {
+    key: 'ai',
+    title: 'AI Tools',
+    tools: [
+      { name: 'ChatGPT', logo: 'chatgpt' },
+      { name: 'Claude', logo: 'claude' },
+      { name: 'Gemini', logo: 'gemini' },
+      { name: 'Copilot', logo: 'copilot' },
+    ],
   },
 ]
 
