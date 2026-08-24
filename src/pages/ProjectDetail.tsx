@@ -6,6 +6,7 @@ import { Reveal } from '@/components/Reveal'
 import { StatCallout } from '@/components/StatCallout'
 import { ToolChips } from '@/components/ToolChip'
 import { getProject, projects } from '@/data/projects'
+import { asset } from '@/lib/asset'
 import { track } from '@/lib/analytics'
 import { useSeo } from '@/lib/useSeo'
 
@@ -99,6 +100,31 @@ export default function ProjectDetail() {
             : 'Schematic of the analysis — not production data.'}
         </p>
       </Reveal>
+
+      {/* Supporting sheets from the same analysis. */}
+      {project.gallery && project.gallery.length > 0 && (
+        <Reveal delay={80} className="mt-8">
+          <h2 className="sr-only">Supporting views</h2>
+          <div className="grid gap-6 sm:grid-cols-2">
+            {project.gallery.map((item) => (
+              <figure key={item.src}>
+                <div className="rounded-[16px] border border-hairline bg-surface p-4 shadow-panel">
+                  <img
+                    src={asset(item.src)}
+                    alt={item.alt}
+                    loading="lazy"
+                    decoding="async"
+                    className="aspect-[16/9] w-full rounded-lg object-contain"
+                  />
+                </div>
+                <figcaption className="mt-3 font-mono text-[0.72rem] text-ink-muted">
+                  {item.caption}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </Reveal>
+      )}
 
       <div className="mt-16 space-y-12">
         <Reveal>

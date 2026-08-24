@@ -10,6 +10,14 @@ export type ProjectVisual =
   | { type: 'motif'; motif: ThumbKind; alt: string }
   | { type: 'image'; src: string; alt: string }
 
+/** A supporting screenshot on a case-study page. */
+export interface GalleryItem {
+  src: string
+  alt: string
+  /** Mono caption under the image, naming what the sheet answers. */
+  caption: string
+}
+
 export interface Stat {
   /** The number itself — kept short; it is set at display size. */
   value: string
@@ -38,6 +46,8 @@ export interface Project {
   approach: string[]
   impact: string[]
   visual: ProjectVisual
+  /** Extra sheets from the same analysis, shown below the hero visual. */
+  gallery?: GalleryItem[]
   links: ProjectLinks
 }
 

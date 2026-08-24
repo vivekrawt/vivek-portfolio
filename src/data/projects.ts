@@ -72,10 +72,27 @@ export const projects: Project[] = [
       'Category contribution % turned a single headline number into an attributable, drillable breakdown.',
     ],
     visual: {
-      type: 'motif',
-      motif: 'timeseries',
-      alt: 'Time-series chart of a flat baseline ending in a sharp late spike, with the surge segment highlighted in orange.',
+      type: 'image',
+      src: 'images/projects/cpi-dec2023-contribution.png',
+      alt: 'Two horizontal bar charts comparing rural and urban category contribution to December 2023 inflation across seven categories, with clothing and health leading rural and personal expenses leading urban.',
     },
+    gallery: [
+      {
+        src: 'images/projects/cpi-yoy-growth.png',
+        alt: 'Column chart of year-on-year CPI growth from 2017 to 2022, with 2019 highlighted in amber as the peak at 8 percent.',
+        caption: 'Year-on-year CPI growth, 2017—2022',
+      },
+      {
+        src: 'images/projects/cpi-food-prices.png',
+        alt: 'Monthly food inflation columns for the twelve months ending May 2023, above a bar chart ranking commodity groups from oils and fats at minus 17 percent to spices at 17 percent.',
+        caption: 'Food prices by month and commodity',
+      },
+      {
+        src: 'images/projects/cpi-covid-impact.png',
+        alt: 'Three line charts tracking food, health, and essential services inflation from October 2018 to January 2021, each marked at the March 2020 onset of COVID-19.',
+        caption: 'Inflation around the March 2020 onset',
+      },
+    ],
     links: { repo: 'https://github.com/vivekrawt/CPI-Consumer-Price-Index-Analysis-' },
   },
   {
@@ -110,10 +127,27 @@ export const projects: Project[] = [
       'Admissions peaked in 2020 at roughly 2,040 — the COVID signal, visible directly in the trend.',
     ],
     visual: {
-      type: 'motif',
-      motif: 'cohort',
-      alt: 'Grouped bar chart comparing condition prevalence across three age cohorts, with one cohort emphasised in orange.',
+      type: 'image',
+      src: 'images/projects/us-healthcare-demographics.png',
+      alt: 'Demographic vs medical condition dashboard: a stacked bar chart splitting six conditions across young, middle, and senior cohorts, beside a second chart splitting the same conditions by female and male case counts.',
     },
+    gallery: [
+      {
+        src: 'images/projects/us-healthcare-age-gender.png',
+        alt: 'Stacked bar chart breaking each of six conditions into six female and male age segments, with hypertension highest among middle-aged males.',
+        caption: 'Age and gender crossed on one axis',
+      },
+      {
+        src: 'images/projects/us-healthcare-resources.png',
+        alt: 'Hospital resources worksheet: pivot tables counting patients, doctors, and rooms per condition, a monthly admissions bar chart, and a colour-scaled admission-type matrix.',
+        caption: 'Hospital resource allocation',
+      },
+      {
+        src: 'images/projects/us-healthcare-pivots.png',
+        alt: 'Objectives worksheet showing the age-versus-condition pivot tables with conditional formatting, alongside the age-cohort prevalence chart they drive.',
+        caption: 'The pivots behind the charts',
+      },
+    ],
     links: { repo: 'https://github.com/vivekrawt/US-Healthcare-Analysis' },
   },
   {
@@ -144,10 +178,22 @@ export const projects: Project[] = [
       'ETL validation keeps bad extractions out of the compliance signal, so a flag means a real problem.',
     ],
     visual: {
-      type: 'motif',
-      motif: 'anomaly',
-      alt: 'Scatter plot of scanned label records in violet, with three outlying anomalies ringed and marked in red.',
+      type: 'image',
+      src: 'images/projects/compliance-seva-rules.png',
+      alt: 'Compliance Rules screen listing six legal metrology rules — MRP declaration, ingredient list, expiry format, nutritional information, country of origin, and batch number — each with its category, priority, violation count, and active status.',
     },
+    gallery: [
+      {
+        src: 'images/projects/compliance-seva-dashboard.png',
+        alt: 'Compliance Seva dashboard: a sidebar of scanner, records, and rules-engine sections beside KPI cards for total scans, compliant products, violations detected, and critical issues, with a compliance donut and a recent-activity feed.',
+        caption: 'Real-time compliance dashboard',
+      },
+      {
+        src: 'images/projects/compliance-seva-scanner.png',
+        alt: 'Compliance Seva landing screen headed Streamline Compliance Checks, offering camera, gallery, and link capture modes for validating product labels against Legal Metrology Rules 2011.',
+        caption: 'Label capture — camera, gallery, or link',
+      },
+    ],
     links: { repo: 'https://github.com/vivekrawt/compliance-seva' },
   },
   {
