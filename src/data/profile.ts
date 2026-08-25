@@ -35,14 +35,15 @@ export const profile = {
 } as const
 
 /**
- * PRD §8.8 — LinkedIn and GitHub are confirmed. Kaggle and LeetCode render
- * automatically the moment a URL is pasted in; an empty string hides the link.
+ * PRD §8.8 — order is the order they render in. Kaggle waits on a URL; an
+ * empty string hides the link until one is pasted in.
  */
 export const socials: SocialLink[] = [
-  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/vivek-rawat-89096522a/' },
-  { name: 'GitHub', url: 'https://github.com/vivekrawt' },
-  { name: 'Kaggle', url: '' },
-  { name: 'LeetCode', url: '' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/vivek-rawat-89096522a/', icon: 'linkedin' },
+  { name: 'GitHub', url: 'https://github.com/vivekrawt', icon: 'github' },
+  { name: 'X', url: 'https://x.com/Xrasmaus', icon: 'x' },
+  { name: 'LeetCode', url: 'https://leetcode.com/u/vivekrawat01/', icon: 'leetcode' },
+  { name: 'Kaggle', url: '', icon: 'kaggle' },
 ]
 
 export const visibleSocials = (): SocialLink[] => socials.filter((s) => s.url.length > 0)

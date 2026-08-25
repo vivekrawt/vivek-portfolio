@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import type { SocialIconName } from '@/components/SocialIcon'
 
 export type ThumbKind = 'flow' | 'timeseries' | 'anomaly' | 'cohort'
 
@@ -55,6 +56,8 @@ export interface SocialLink {
   name: string
   /** Empty string = not published yet; the UI skips it. */
   url: string
+  /** Brand mark drawn by <SocialIcon>. */
+  icon: SocialIconName
 }
 
 export interface ExperienceItem {
