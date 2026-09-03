@@ -1,7 +1,23 @@
 import { ArrowUpRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { SocialLinks } from '@/components/SocialLinks'
+import { Quote } from '@/components/Quote'
 import { profile } from '@/data/profile'
+import { asset } from '@/lib/asset'
+import { cn } from '@/lib/cn'
+
+/**
+ * Left-to-right slices of the footer range. Widths are a share of the viewport
+ * so the range keeps its proportions instead of the centre peak ballooning on
+ * wide screens; the row overflows on purpose and is clipped at both edges.
+ */
+const FOOTER_RANGE = [
+  { src: '/images/footer-range-green.webp', width: 'w-[32%] sm:w-[30%] lg:w-[26%]', depth: 'z-20', flipped: true },
+  { src: '/images/footer-range-snow.webp', width: 'w-[38%] sm:w-[34%] lg:w-[30%]', depth: 'z-10', flipped: false },
+  { src: '/images/footer-range-glacier.webp', width: 'w-[50%] sm:w-[42%] lg:w-[38%]', depth: 'z-0', flipped: false },
+  { src: '/images/footer-range-snow.webp', width: 'w-[38%] sm:w-[34%] lg:w-[30%]', depth: 'z-10', flipped: true },
+  { src: '/images/footer-range-green.webp', width: 'w-[32%] sm:w-[30%] lg:w-[26%]', depth: 'z-20', flipped: false },
+]
 
 /**
  * PRD §6.3 — monogram + © left, "Get in touch" centre, socials right, with
@@ -58,6 +74,40 @@ export function Footer() {
 
           <SocialLinks variant="tile" compactLabels />
         </div>
+      </div>
+
+      <Quote />
+
+      {/* PRD §6.3 addendum — a mountain range caps the page: the glacier peak
+          sits centre with snow ridges either side and low green foothills
+          closing the ends. Each cut-out is bottom-aligned and overlaps its
+          neighbour, so five images read as one continuous ridge line that
+          runs off both edges. Nearer (greener, lower) pieces stack in front. */}
+      <div
+        aria-hidden="true"
+        className="flex w-full items-end justify-center overflow-hidden"
+      >
+        {FOOTER_RANGE.map(({ src, width, depth, flipped }, index) => (
+          <img
+            key={`${src}-${index}`}
+            src={asset(src)}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            draggable={false}
+            className={cn(
+              'block h-auto max-w-none shrink-0 select-none',
+              // Feather the cut edges so neighbouring slices cross-dissolve
+              // instead of showing the photo's rectangular boundary.
+              '[-webkit-mask-image:linear-gradient(to_right,transparent,black_16%,black_84%,transparent)]',
+              '[mask-image:linear-gradient(to_right,transparent,black_16%,black_84%,transparent)]',
+              width,
+              depth,
+              flipped && '-scale-x-100',
+              index > 0 && '-ml-[11%] sm:-ml-[9%]',
+            )}
+          />
+        ))}
       </div>
     </footer>
   )

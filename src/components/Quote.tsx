@@ -1,6 +1,7 @@
 import { Reveal } from '@/components/Reveal'
 
-/** Sign-off line above the footer, on every page. */
+/** Sign-off line inside the footer — under the contact bar, above the
+ *  mountain range. Rendered on every page via `Footer`. */
 export function Quote() {
   return (
     <section aria-label="Closing quote" className="border-t border-hairline">
