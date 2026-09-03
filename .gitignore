@@ -14,3 +14,6 @@ dist
 # Source photos for the About deck — ~35MB of raw phone shots, already
 # optimised into public/images/about/. Kept on disk, out of git history.
 legacy/about-originals/
+
+# Vite dep-optimiser scratch dir
+.vite/
