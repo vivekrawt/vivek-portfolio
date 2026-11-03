@@ -19,7 +19,7 @@ export default function NotFound() {
         The page you asked for is not in the dataset. The ones that are, are one click away.
       </p>
       <LinkButton to="/" size="lg" className="mt-12 w-full max-w-[18rem] rounded-full">
-        Back home
+        Back to About
       </LinkButton>
     </div>
   )

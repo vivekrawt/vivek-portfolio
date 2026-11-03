@@ -9,8 +9,7 @@ import { asset } from '@/lib/asset'
 import { cn } from '@/lib/cn'
 
 const routes = [
-  { to: '/', label: 'Home', end: true },
-  { to: '/about', label: 'About me', end: false },
+  { to: '/', label: 'About me', end: true },
   { to: '/projects', label: 'All projects', end: false },
   { to: '/contact', label: 'Contact', end: false },
 ]

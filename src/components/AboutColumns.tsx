@@ -13,6 +13,7 @@ import {
 import { awards, experience, techStack } from '@/data/profile'
 import { track } from '@/lib/analytics'
 import { asset } from '@/lib/asset'
+import type { Tool } from '@/types'
 
 const awardIcons: LucideIcon[] = [Trophy, GraduationCap, Award]
 
@@ -118,19 +119,37 @@ export function AboutColumns() {
                   {job.summary.after}
                 </p>
               )}
+
+              {job.details && (
+                <ul className="mt-3 list-disc space-y-1.5 pl-5 text-[0.83rem] leading-relaxed text-ink-muted">
+                  {job.details.map((detail) => (
+                    <li key={detail}>{detail}</li>
+                  ))}
+                </ul>
+              )}
             </li>
           ))}
         </ol>
       </Column>
 
-      <Column title="Tech Stack" icon={Database}>
+      <Column title="Skills" icon={Database}>
         <ul className="divide-y divide-hairline">
           {techStack.map((group) => (
             <li key={group.key} className="py-3.5 first:pt-0 last:pb-0">
               <p className="text-[0.88rem] font-semibold leading-snug">{group.title}</p>
 
               <ul className="mt-2 flex flex-wrap gap-1.5">
-                {group.tools.map((tool) => (
+                {([
+                  ...group.tools,
+                  ...(group.items
+                    ? group.items.split(' · ').map((name) => ({ name }))
+                    : []),
+                ] as Tool[])
+                  .filter(
+                    (tool, index, tools) =>
+                      tools.findIndex((candidate) => candidate.name === tool.name) === index,
+                  )
+                  .map((tool) => (
                   <li
                     key={tool.name}
                     className="inline-flex items-center gap-1.5 rounded-full border border-hairline bg-canvas/70 py-1 pl-1.5 pr-2.5 text-[0.76rem] text-ink-muted"
@@ -147,14 +166,18 @@ export function AboutColumns() {
                         className="size-4 object-contain"
                       />
                     )}
+                    {!tool.logo && (
+                      <span
+                        aria-hidden="true"
+                        className="inline-flex size-4 items-center justify-center rounded-full bg-gold-soft text-[0.55rem] font-bold uppercase text-gold-ink"
+                      >
+                        {tool.name.charAt(0)}
+                      </span>
+                    )}
                     {tool.name}
                   </li>
-                ))}
+                  ))}
               </ul>
-
-              {group.items && (
-                <p className="mt-2 text-[0.8rem] leading-snug text-ink-muted/85">{group.items}</p>
-              )}
             </li>
           ))}
         </ul>
