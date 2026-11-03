@@ -7,7 +7,7 @@ export function Logo({ className }: { className?: string }) {
   return (
     <Link
       to="/"
-      aria-label={`${profile.name} — home`}
+      aria-label={`${profile.name} — about me`}
       className={cn(
         'font-display text-[1.35rem] font-bold leading-none tracking-tight text-ink transition-opacity hover:opacity-70',
         className,

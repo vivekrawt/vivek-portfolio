@@ -71,6 +71,8 @@ export interface ExperienceItem {
   url?: string
   /** Short blurb; `highlight` gets the amber underline. */
   summary?: { before: string; highlight: string; after: string }
+  /** Optional role details shown as a concise bullet list. */
+  details?: string[]
 }
 
 /** One tool in the tech stack, optionally with a brand mark. */
