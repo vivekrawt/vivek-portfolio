@@ -10,42 +10,85 @@ import {
   Trophy,
   type LucideIcon,
 } from 'lucide-react'
+import { useState } from 'react'
 import { awards, experience, techStack } from '@/data/profile'
 import { track } from '@/lib/analytics'
 import { asset } from '@/lib/asset'
+import { cn } from '@/lib/cn'
 import type { Tool } from '@/types'
 
 const awardIcons: LucideIcon[] = [Trophy, GraduationCap, Award]
+
+type TabKey = 'experience' | 'skills' | 'recognition'
+
+const tabs: { key: TabKey; label: string; icon: LucideIcon }[] = [
+  { key: 'experience', label: 'Experience', icon: Briefcase },
+  { key: 'skills', label: 'Skills', icon: Database },
+  { key: 'recognition', label: 'Recognition', icon: Star },
+]
 
 function Column({
   title,
   icon: Icon,
   children,
+  className,
 }: {
   title: string
   icon: LucideIcon
   children: React.ReactNode
+  className?: string
 }) {
   return (
-    <section className="px-6 py-8 lg:px-8">
+    <section className={cn('px-4 py-6 sm:px-6 sm:py-8 lg:px-8', className)}>
       <h3 className="flex items-center gap-3">
-        <span className="icon-tile size-9">
-          <Icon className="size-[18px]" strokeWidth={1.75} aria-hidden="true" />
+        <span className="icon-tile size-8 sm:size-9">
+          <Icon className="size-4 sm:size-[18px]" strokeWidth={1.75} aria-hidden="true" />
         </span>
         <span className="mono-label text-ink">{title}</span>
         <span aria-hidden="true" className="h-px flex-1 bg-gold-line/45" />
         <span aria-hidden="true" className="size-1.5 rounded-full bg-gold" />
       </h3>
-      <div className="mt-6">{children}</div>
+      <div className="mt-5 sm:mt-6">{children}</div>
     </section>
   )
 }
 
 /** PRD §7.2 — Work Experience / Data Stack / Recognition, in one panel. */
 export function AboutColumns() {
+  const [activeTab, setActiveTab] = useState<TabKey>('experience')
+
   return (
-    <div className="grid divide-y divide-hairline rounded-[20px] border border-hairline bg-surface/70 shadow-panel backdrop-blur-sm lg:grid-cols-3 lg:divide-x lg:divide-y-0">
-      <Column title="Work Experience" icon={Briefcase}>
+    <div>
+      {/* Mobile Tab Switcher */}
+      <div className="mb-4 flex items-center justify-center gap-1.5 rounded-full border border-hairline bg-surface/80 p-1.5 shadow-panel backdrop-blur-sm lg:hidden">
+        {tabs.map((tab) => {
+          const Icon = tab.icon
+          const active = activeTab === tab.key
+          return (
+            <button
+              key={tab.key}
+              type="button"
+              onClick={() => setActiveTab(tab.key)}
+              className={cn(
+                'flex flex-1 items-center justify-center gap-1.5 rounded-full py-2 text-[0.76rem] font-medium transition-colors sm:text-xs',
+                active
+                  ? 'bg-gold-soft font-semibold text-ink shadow-sm'
+                  : 'text-ink-muted hover:text-ink',
+              )}
+            >
+              <Icon className="size-3.5" strokeWidth={1.75} aria-hidden="true" />
+              <span>{tab.label}</span>
+            </button>
+          )
+        })}
+      </div>
+
+      <div className="grid divide-y divide-hairline rounded-[20px] border border-hairline bg-surface/70 shadow-panel backdrop-blur-sm lg:grid-cols-3 lg:divide-x lg:divide-y-0">
+        <Column
+          title="Work Experience"
+          icon={Briefcase}
+          className={activeTab === 'experience' ? 'block' : 'hidden lg:block'}
+        >
         <ol className="space-y-7">
           {experience.map((job) => (
             <li key={`${job.org}-${job.period}`} className="relative pl-5">
@@ -83,10 +126,10 @@ export function AboutColumns() {
                       className="absolute -right-1.5 -top-1.5 size-[18px] rounded-full bg-gold p-[3px] text-ink opacity-0 transition-opacity duration-200 group-hover/logo:opacity-100 group-focus-visible/logo:opacity-100"
                     />
 
-                    {/* Says where the click goes, on hover and on keyboard focus. */}
+                    {/* Says where the click goes, on hover and on keyboard focus (hidden on touch/mobile to prevent overflow). */}
                     <span
                       aria-hidden="true"
-                      className="pointer-events-none absolute left-full top-1/2 z-20 ml-2 -translate-y-1/2 whitespace-nowrap rounded-md bg-ink px-2 py-1 font-mono text-[0.65rem] tracking-wide text-surface opacity-0 shadow-lift transition-opacity duration-200 group-hover/logo:opacity-100 group-focus-visible/logo:opacity-100"
+                      className="pointer-events-none absolute left-full top-1/2 z-20 ml-2 hidden -translate-y-1/2 whitespace-nowrap rounded-md bg-ink px-2 py-1 font-mono text-[0.65rem] tracking-wide text-surface opacity-0 shadow-lift transition-opacity duration-200 sm:block group-hover/logo:opacity-100 group-focus-visible/logo:opacity-100"
                     >
                       {job.url.replace(/^https?:\/\/(www\.)?/, '')} ↗
                     </span>
@@ -132,7 +175,11 @@ export function AboutColumns() {
         </ol>
       </Column>
 
-      <Column title="Skills" icon={Database}>
+      <Column
+        title="Skills"
+        icon={Database}
+        className={activeTab === 'skills' ? 'block' : 'hidden lg:block'}
+      >
         <ul className="divide-y divide-hairline">
           {techStack.map((group) => (
             <li key={group.key} className="py-3.5 first:pt-0 last:pb-0">
@@ -183,7 +230,11 @@ export function AboutColumns() {
         </ul>
       </Column>
 
-      <Column title="Recognition" icon={Star}>
+      <Column
+        title="Recognition"
+        icon={Star}
+        className={activeTab === 'recognition' ? 'block' : 'hidden lg:block'}
+      >
         <ul className="divide-y divide-hairline">
           {awards.map((award, i) => {
             const Icon = awardIcons[i % awardIcons.length]
@@ -212,6 +263,7 @@ export function AboutColumns() {
           })}
         </ul>
       </Column>
+      </div>
     </div>
   )
 }

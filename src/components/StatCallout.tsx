@@ -12,18 +12,18 @@ const isQuantitative = (value: string) => /^[\d$£€<>~+]/.test(value.trim())
  */
 export function StatCallout({ value, label }: Stat) {
   return (
-    <div className="border-t border-ink pt-4">
+    <div className="border-t border-ink pt-3 sm:pt-4">
       <p
         className={cn(
           'font-display tabular-nums',
           isQuantitative(value)
-            ? 'text-stat'
-            : 'text-[1.5rem] font-semibold leading-tight tracking-tight sm:text-[1.75rem]',
+            ? 'text-[1.65rem] sm:text-stat'
+            : 'text-[1.2rem] font-semibold leading-tight tracking-tight sm:text-[1.75rem]',
         )}
       >
         {value}
       </p>
-      <p className="mt-2 text-sm leading-snug text-ink-muted">{label}</p>
+      <p className="mt-1.5 text-xs leading-snug text-ink-muted sm:mt-2 sm:text-sm">{label}</p>
     </div>
   )
 }

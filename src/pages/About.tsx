@@ -19,7 +19,7 @@ export default function About() {
     <div className="frame section">
       {/* Text left, photo deck right; on mobile the deck falls between the bio
           and the three columns, per PRD §7.2. */}
-      <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-16">
+      <div className="grid gap-10 sm:gap-14 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-16">
         <div>
           <Reveal>
             <SectionHeading as="h1" kicker="About me">
@@ -29,7 +29,7 @@ export default function About() {
 
           <Reveal
             delay={80}
-            className="mt-9 max-w-prose space-y-6 text-[1.0625rem] leading-relaxed text-ink-muted"
+            className="mt-7 max-w-prose space-y-5 text-[1rem] leading-relaxed text-ink-muted sm:mt-9 sm:space-y-6 sm:text-[1.0625rem]"
           >
             <p>
               I build the analytics layer that lets founders see product, business, and operations
@@ -58,7 +58,7 @@ export default function About() {
         </Reveal>
       </div>
 
-      <Reveal delay={80} className="mt-16 lg:mt-20">
+      <Reveal delay={80} className="mt-12 sm:mt-16 lg:mt-20">
         <h2 className="sr-only">Experience, stack, and recognition</h2>
         <AboutColumns />
       </Reveal>

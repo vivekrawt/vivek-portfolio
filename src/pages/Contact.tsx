@@ -40,7 +40,7 @@ function EmailRow() {
       <button
         type="button"
         onClick={copy}
-        className="inline-flex items-center gap-1.5 rounded border border-hairline px-2.5 py-1 font-mono text-[0.7rem] uppercase tracking-[0.06em] text-ink-muted transition-colors hover:border-ink/25 hover:text-ink"
+        className="inline-flex min-h-[34px] items-center gap-1.5 rounded border border-hairline px-3 py-1 font-mono text-[0.72rem] uppercase tracking-[0.06em] text-ink-muted transition-colors hover:border-ink/25 hover:text-ink active:bg-ink/5"
       >
         {copied ? (
           <Check className="size-3.5 text-[rgb(var(--accent-ink))]" strokeWidth={2} aria-hidden="true" />
@@ -66,7 +66,7 @@ export default function Contact() {
 
   return (
     <div className="frame section">
-      <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-20">
+      <div className="grid gap-10 sm:gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-20">
         <div>
           <Reveal>
             <SectionHeading as="h1" kicker="Contact">
@@ -74,14 +74,14 @@ export default function Contact() {
             </SectionHeading>
           </Reveal>
 
-          <Reveal delay={80} className="mt-8 max-w-prose space-y-8">
-            <p className="text-[1.0625rem] leading-relaxed text-ink-muted">
+          <Reveal delay={80} className="mt-6 max-w-prose space-y-6 sm:mt-8 sm:space-y-8">
+            <p className="text-[1rem] leading-relaxed text-ink-muted sm:text-[1.0625rem]">
               I&rsquo;m open to data analyst roles and to freelance analytics work — dashboards,
               reporting pipelines, or an honest look at data you suspect is lying to you.{' '}
               {profile.responseTime}
             </p>
 
-            <div className="space-y-6 border-t border-hairline pt-8">
+            <div className="space-y-5 border-t border-hairline pt-6 sm:space-y-6 sm:pt-8">
               <div>
                 <h2 className="mono-label">Email</h2>
                 <div className="mt-3">

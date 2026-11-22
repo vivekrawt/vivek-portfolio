@@ -41,14 +41,14 @@ export default function Projects() {
         </Reveal>
 
         <Reveal delay={80}>
-          <ul className="mt-8 flex flex-wrap gap-2.5">
+          <ul className="mt-6 flex flex-wrap gap-2 sm:mt-8 sm:gap-2.5">
             {traits.map((trait) => (
               <li
                 key={trait.label}
-                className="inline-flex items-center gap-2.5 rounded-full border border-hairline bg-surface/70 py-1.5 pl-1.5 pr-4 text-[0.85rem] text-ink-muted shadow-panel"
+                className="inline-flex items-center gap-2 rounded-full border border-hairline bg-surface/70 py-1 pl-1.5 pr-3 text-[0.78rem] text-ink-muted shadow-panel sm:gap-2.5 sm:py-1.5 sm:pr-4 sm:text-[0.85rem]"
               >
-                <span className="icon-tile size-7">
-                  <trait.icon className="size-[15px]" strokeWidth={1.75} aria-hidden="true" />
+                <span className="icon-tile size-6 sm:size-7">
+                  <trait.icon className="size-3 sm:size-[15px]" strokeWidth={1.75} aria-hidden="true" />
                 </span>
                 {trait.label}
               </li>
@@ -57,9 +57,9 @@ export default function Projects() {
         </Reveal>
       </div>
 
-      <ScrollCue className="mt-12" />
+      <ScrollCue className="mt-8 sm:mt-12" />
 
-      <ProjectGrid className="mt-10" />
+      <ProjectGrid className="mt-8 sm:mt-10" />
     </div>
   )
 }
