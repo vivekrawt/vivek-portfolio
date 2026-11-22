@@ -82,13 +82,13 @@ export function Navbar() {
   }, [open])
 
   return (
-    <header className="sticky top-0 z-50 pt-4 sm:pt-5">
+    <header className="sticky top-0 z-50 pt-2.5 sm:pt-5">
       <div className="frame">
         <nav
           aria-label="Primary"
           className="rounded-[18px] border border-hairline bg-surface/92 shadow-pill backdrop-blur-md"
         >
-          <div className="flex h-15 items-center gap-4 px-4 sm:px-6">
+          <div className="flex h-14 items-center gap-3 px-3.5 sm:h-15 sm:gap-4 sm:px-6">
             <Logo />
 
             <ul className="hidden flex-1 items-center justify-center gap-1 text-[0.9rem] md:flex">
@@ -118,7 +118,7 @@ export function Navbar() {
               aria-expanded={open}
               aria-controls="mobile-menu"
               aria-label="Open menu"
-              className="ml-auto inline-flex size-11 items-center justify-center rounded-full text-ink md:hidden"
+              className="ml-auto inline-flex size-11 items-center justify-center rounded-full text-ink active:bg-ink/5 md:hidden"
             >
               <Menu className="size-5" aria-hidden="true" />
             </button>
@@ -139,9 +139,9 @@ export function Navbar() {
             role="dialog"
             aria-modal="true"
             aria-label="Site menu"
-            className="fixed inset-0 z-[60] flex flex-col bg-canvas md:hidden"
+            className="fixed inset-0 z-[60] flex flex-col bg-canvas pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-[max(0.75rem,env(safe-area-inset-top))] md:hidden"
           >
-            <div className="frame flex h-15 shrink-0 items-center justify-between">
+            <div className="frame flex h-14 shrink-0 items-center justify-between sm:h-15">
               <Logo />
               <button
                 type="button"
@@ -150,13 +150,13 @@ export function Navbar() {
                   toggleRef.current?.focus()
                 }}
                 aria-label="Close menu"
-                className="-mr-2 inline-flex size-11 items-center justify-center rounded-full text-ink"
+                className="-mr-1 inline-flex size-11 items-center justify-center rounded-full text-ink active:bg-ink/5"
               >
                 <X className="size-5" aria-hidden="true" />
               </button>
             </div>
 
-            <ul className="frame flex flex-1 flex-col justify-center gap-1 pb-24">
+            <ul className="frame flex flex-1 flex-col justify-center gap-1 pb-16">
               {routes.map((route) => (
                 <li key={route.to}>
                   <NavLink
@@ -164,7 +164,7 @@ export function Navbar() {
                     end={route.end}
                     className={({ isActive }) =>
                       cn(
-                        'block py-3 font-display text-[2rem] font-bold tracking-tight transition-colors',
+                        'block py-2.5 font-display text-[1.85rem] font-bold tracking-tight transition-colors sm:py-3 sm:text-[2rem]',
                         isActive ? 'text-ink' : 'text-ink-muted',
                       )
                     }
@@ -173,7 +173,7 @@ export function Navbar() {
                   </NavLink>
                 </li>
               ))}
-              <li className="mt-8 border-t border-hairline pt-8 text-base">
+              <li className="mt-6 border-t border-hairline pt-6 text-base sm:mt-8 sm:pt-8">
                 <ResumeLink onNavigate={() => setOpen(false)} />
               </li>
             </ul>

@@ -15,7 +15,7 @@ interface Props {
 export function ProjectGrid({ compact = false, limit, className }: Props) {
   const shown = limit ? projects.slice(0, limit) : projects
   return (
-    <ul className={cn('grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4', className)}>
+    <ul className={cn('grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 sm:gap-y-12 lg:grid-cols-4', className)}>
       {shown.map((project, i) => (
         <li key={project.slug}>
           <Reveal delay={i * 70}>

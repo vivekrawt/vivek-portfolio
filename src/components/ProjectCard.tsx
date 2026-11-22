@@ -33,11 +33,11 @@ export function ProjectCard({ project, compact = false }: { project: Project; co
         </div>
 
         {!compact && (
-          <div className="mt-5 space-y-3">
-            <h3 className="font-display text-[1.0625rem] font-semibold leading-snug tracking-tight">
+          <div className="mt-4 space-y-2.5 sm:mt-5 sm:space-y-3">
+            <h3 className="font-display text-[1rem] font-semibold leading-snug tracking-tight sm:text-[1.0625rem]">
               {project.title}
             </h3>
-            <p className="text-[0.9rem] leading-relaxed text-ink-muted">{project.outcome}</p>
+            <p className="text-[0.85rem] leading-relaxed text-ink-muted sm:text-[0.9rem]">{project.outcome}</p>
             <ToolChips tools={project.tools.slice(0, 3)} />
           </div>
         )}
@@ -69,12 +69,12 @@ export function MoreOnGitHubCard({ compact = false }: { compact?: boolean }) {
         </div>
 
         {!compact && (
-          <div className="mt-5 space-y-3">
-            <h3 className="font-display text-[1.0625rem] font-semibold leading-snug tracking-tight">
+          <div className="mt-4 space-y-2.5 sm:mt-5 sm:space-y-3">
+            <h3 className="font-display text-[1rem] font-semibold leading-snug tracking-tight sm:text-[1.0625rem]">
               {moreCard.label}
               <span className="sr-only"> (opens in a new tab)</span>
             </h3>
-            <p className="text-[0.9rem] leading-relaxed text-ink-muted">{moreCard.outcome}</p>
+            <p className="text-[0.85rem] leading-relaxed text-ink-muted sm:text-[0.9rem]">{moreCard.outcome}</p>
           </div>
         )}
       </article>

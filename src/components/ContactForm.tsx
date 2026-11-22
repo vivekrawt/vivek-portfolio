@@ -26,7 +26,7 @@ function validate(values: { name: string; email: string; message: string }): Err
 }
 
 const field =
-  'w-full rounded border bg-surface px-3.5 py-2.5 text-[0.95rem] text-ink placeholder:text-ink-muted/60 transition-colors'
+  'w-full rounded border bg-surface px-3.5 py-2.5 text-base sm:text-[0.95rem] text-ink placeholder:text-ink-muted/60 transition-colors'
 
 export function ContactForm() {
   const id = useId()

@@ -29,10 +29,10 @@ export default {
       },
       fontSize: {
         // PRD §5.4 — display scale is fluid, body is fixed.
-        display: ['clamp(3rem, 9vw, 8rem)', { lineHeight: '0.95', letterSpacing: '-0.03em', fontWeight: '700' }],
-        h2: ['clamp(2rem, 5vw, 3.5rem)', { lineHeight: '1.02', letterSpacing: '-0.025em', fontWeight: '700' }],
-        h3: ['clamp(1.25rem, 2vw, 1.5rem)', { lineHeight: '1.25', letterSpacing: '-0.01em', fontWeight: '600' }],
-        stat: ['clamp(2.25rem, 4.5vw, 3.25rem)', { lineHeight: '1', letterSpacing: '-0.03em', fontWeight: '700' }],
+        display: ['clamp(2.35rem, 8vw, 8rem)', { lineHeight: '1.02', letterSpacing: '-0.03em', fontWeight: '700' }],
+        h2: ['clamp(1.75rem, 4.5vw, 3.5rem)', { lineHeight: '1.08', letterSpacing: '-0.025em', fontWeight: '700' }],
+        h3: ['clamp(1.15rem, 2vw, 1.5rem)', { lineHeight: '1.25', letterSpacing: '-0.01em', fontWeight: '600' }],
+        stat: ['clamp(1.75rem, 4.5vw, 3.25rem)', { lineHeight: '1', letterSpacing: '-0.03em', fontWeight: '700' }],
         label: ['0.8rem', { lineHeight: '1.2', letterSpacing: '0.06em', fontWeight: '500' }],
       },
       spacing: {

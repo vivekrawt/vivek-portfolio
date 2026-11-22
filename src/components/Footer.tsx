@@ -40,7 +40,7 @@ export function Footer() {
       />
 
       <div className="frame relative">
-        <div className="flex flex-col items-start gap-8 py-8 text-sm text-ink-muted sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+        <div className="flex flex-col items-start gap-6 py-6 text-sm text-ink-muted sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:py-8">
           {/* Identity */}
           <div className="flex items-center gap-4">
             <span
@@ -85,7 +85,7 @@ export function Footer() {
           runs off both edges. Nearer (greener, lower) pieces stack in front. */}
       <div
         aria-hidden="true"
-        className="flex w-full items-end justify-center overflow-hidden"
+        className="pointer-events-none flex w-full select-none items-end justify-center overflow-hidden"
       >
         {FOOTER_RANGE.map(({ src, width, depth, flipped }, index) => (
           <img

@@ -77,9 +77,9 @@ export default function ProjectDetail() {
       </Reveal>
 
       {/* At a glance — at least one quantified stat above the fold. */}
-      <Reveal delay={120} className="mt-14">
+      <Reveal delay={120} className="mt-10 sm:mt-14">
         <h2 className="sr-only">At a glance</h2>
-        <div className="grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-6 sm:gap-x-6 sm:gap-y-8 lg:grid-cols-4">
           {project.stats.map((stat) => (
             <StatCallout key={stat.label} {...stat} />
           ))}
@@ -87,8 +87,8 @@ export default function ProjectDetail() {
       </Reveal>
 
       {/* Visual — PRD §7.4.6 */}
-      <Reveal delay={80} className="mt-16">
-        <div className="rounded-[20px] border border-hairline bg-surface p-6 shadow-panel sm:p-10">
+      <Reveal delay={80} className="mt-12 sm:mt-16">
+        <div className="rounded-[16px] border border-hairline bg-surface p-3.5 shadow-panel sm:rounded-[20px] sm:p-10">
           <div className="mx-auto aspect-[16/9] max-w-4xl">
             <Visual visual={project.visual} eager />
           </div>
@@ -183,7 +183,7 @@ export default function ProjectDetail() {
         )}
       </div>
 
-      <Reveal className="mt-20 flex flex-wrap items-center justify-between gap-4 border-t border-hairline pt-8">
+      <Reveal className="mt-14 flex flex-col items-start justify-between gap-3 border-t border-hairline pt-6 sm:mt-20 sm:flex-row sm:items-center sm:gap-4 sm:pt-8">
         <Link to="/projects" className="link-underline text-sm text-ink-muted hover:text-ink">
           ← All projects
         </Link>
